@@ -1,1 +1,67 @@
-<!-- Este archivo fue reemplazado por React. No usar. -->
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Falta Uno</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body { width: 100%; height: 100%; font-family: sans-serif; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+      const { useState } = React;
+
+      function FaltaUnoApp() {
+        const [step, setStep] = useState("registro");
+        const [form, setForm] = useState({ nombre: "", alias: "", barrios: "" });
+
+        const handleSubmit = (e) => {
+          e.preventDefault();
+          setStep("rol");
+        };
+
+        return (
+          <div style={{ minHeight: "100vh", background: "linear-gradient(to bottom right, #cfe2ff, white, #d7f3ff)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "1rem", fontFamily: "sans-serif" }}>
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA1MTIgNTEyJz48Y2lyY2xlIGN4PScyNTYnIGN5PScyNTYnIHI9JzI1NicgZmlsbD0nI2ZmZmZmZicgc3Ryb2tlPScjMDAwJyBzdHJva2Utd2lkdGg9JzMyJy8+PC9zdmc+" alt="Logo Falta Uno" style={{ width: 80, height: 80, marginBottom: 8 }} />
+            <div style={{ fontSize: "1.875rem", fontWeight: 800, color: "#1e40af", marginBottom: 24, letterSpacing: "0.05em" }}>Falta Uno</div>
+
+            {step === "registro" && (
+              <div style={{ background: "#fff", padding: "1.5rem", borderRadius: "1rem", boxShadow: "0 0 12px rgba(0,0,0,0.1)", maxWidth: "400px", width: "100%" }}>
+                <h2 style={{ fontSize: "1.25rem", marginBottom: "1rem", color: "#1d4ed8" }}>Registrate</h2>
+                <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                  <input placeholder="Tu nombre" value={form.nombre} onChange={(e) => setForm({ ...form, nombre: e.target.value })} required />
+                  <input placeholder="Tu apodo o alias" value={form.alias} onChange={(e) => setForm({ ...form, alias: e.target.value })} required />
+                  <input placeholder="Tus barrios preferidos (ej: Caballito, Palermo)" value={form.barrios} onChange={(e) => setForm({ ...form, barrios: e.target.value })} required />
+                  <button type="submit" style={{ backgroundColor: "#2563eb", color: "#fff", padding: "10px", border: "none", borderRadius: "6px" }}>Continuar</button>
+                </form>
+              </div>
+            )}
+
+            {step === "rol" && (
+              <div style={{ background: "#fff", padding: "1.5rem", borderRadius: "1rem", boxShadow: "0 0 12px rgba(0,0,0,0.1)", maxWidth: "400px", width: "100%" }}>
+                <h2 style={{ fontSize: "1.25rem", marginBottom: "1rem", color: "#1d4ed8" }}>Hola {form.alias}, ¿qué querés hacer hoy?</h2>
+                <button onClick={() => alert("Crear partido")} style={{ backgroundColor: "#16a34a", color: "#fff", padding: "10px", borderRadius: "6px", border: "none", marginBottom: "10px" }}>
+                  Organizar un partido
+                </button>
+                <button onClick={() => alert("Buscar partidos")} style={{ backgroundColor: "#facc15", color: "#000", padding: "10px", borderRadius: "6px", border: "none" }}>
+                  Unirme a un partido
+                </button>
+              </div>
+            )}
+          </div>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<FaltaUnoApp />);
+
+    </script>
+  </body>
+</html>
